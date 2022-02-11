@@ -12,7 +12,7 @@ Create a simple (no-login) dashboard that integrates two components in two diffe
     c. The table should let the user sort the records by timestamp and blocknumber.
 
 
-2. A chart component (like recharts) to show on different types (like pie and bars) to show stats also coming from APIs endpoint (we recommend snowtrace or covalent stats)
+2. A chart component (like apexcharts) to show on different types (like pie and bars) to show stats also coming from APIs endpoint (we recommend snowtrace or covalent stats)
 
     a. The components should render on this new tab and show proper values coming from the endpoint.
 

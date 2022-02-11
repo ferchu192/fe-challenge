@@ -1,4 +1,4 @@
-# React Front--end challenge
+# React Front-End challenge
 
 ## Challenge
 Create a simple (no-login) dashboard that integrates two components in two different tabs:
@@ -24,6 +24,7 @@ Create a simple (no-login) dashboard that integrates two components in two diffe
 - The application should be delivered by forking this repository, upload the code and create a PR for reviewing.
 
 ## Tools
+
 Recommended tools:
 - ReactJs
 - Recharts

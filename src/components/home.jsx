@@ -43,7 +43,7 @@ const Home = () => {
     },
     {
       id: 'charts',
-      label: <IconContainer id="img-container"> <ImageIcon src='pancake_icon.png'/>Chars</IconContainer>,
+      label: <IconContainer id="img-container"> <ImageIcon src='pancake_icon.png'/>Charts</IconContainer>,
       component: <InvestorCharts />
     },
   ];

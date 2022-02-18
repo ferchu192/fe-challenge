@@ -1,4 +1,9 @@
-# React Front-End challenge
+# Levantar la aplicación
+
+1. Ejecutar el comando: docker-compose up -d
+
+2. El servicio se levanta en el puerto :3000
+
 
 ## Challenge
 Create a simple (no-login) dashboard that integrates two components in two different tabs:

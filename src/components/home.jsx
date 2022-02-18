@@ -42,7 +42,7 @@ const Home = () => {
       component: <InvestorTable />
     },
     {
-      id: 'chars',
+      id: 'charts',
       label: <IconContainer id="img-container"> <ImageIcon src='pancake_icon.png'/>Chars</IconContainer>,
       component: <InvestorCharts />
     },

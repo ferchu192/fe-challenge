@@ -7,6 +7,8 @@ import MUIDataTable from "mui-datatables";
 import { ThemeProvider } from "@material-ui/core/";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import axios from 'axios';
+
 // Footer
 import CustomFooter from './CustomFooter';
 
@@ -14,7 +16,7 @@ import CustomFooter from './CustomFooter';
 import { getTableTheme } from './theme';
 
 // Helpers
-import { getQuery } from './helpers';
+import { TRANSACTION_QUERY } from './helpers';
 
 // StyleComponents
 // import { LoadingOverlay } from './styledComponent';
@@ -106,39 +108,39 @@ const Table = ({
   */
   const fetchData = () => {
     setLoading(true);
-    const query = getQuery(queryType, queryParams);
-    fetch(query)
-      .then((result) => {
-        return result.json();
-      })
-      .then((json) => {
-        setMakeQuery(false);
-        try {
-          const { error, error_message: message } = json;
-          if (error) {
-            setErrorMessage(message);
-            setData([])
-          } else {
-
-            fetchCallback(json);
-            const pagination = json.data.pagination.has_more;
-            const parsed = customParser(json);
-            setHasNextPage(pagination);
-            setData(parsed);
-          }
-        } catch (e) {
-          console.error('Error getting data: ', e);
-          setErrorMessage('Error getting data')
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('error: ', error);
-        setData([])
-        setMakeQuery(false);
-        setLoading(false);
-        setErrorMessage('Error getting data')
-      })
+    const query = TRANSACTION_QUERY(queryParams);
+    const data = JSON.stringify({ query });
+    axios({
+      method: 'post',
+      url: 'https://streaming.bitquery.io/graphql',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: data
+    }).then(function (response) {
+      const { Transactions } = response.data.data.EVM;
+      const parsed = Transactions.forEach((transaction) => ({
+        hash: transaction.Transaction.Hash,
+        date: transaction.Transaction.Time,
+        from: transaction.Transaction.From,
+        to: transaction.Transaction.To,
+        gas: transaction.Transaction.Gas,
+        value: transaction.Transaction.Value,
+        valueUSD: transaction.Transaction.ValueInUSD,
+        cost: transaction.Transaction.Cost,
+        costUSD: transaction.Transaction.CostInUSD,
+        success: transaction.TransactionStatus.Success,
+        priceUSD: transaction.Transaction.Value/transaction.Transaction.ValueInUSD,
+      }));
+      
+      console.log('parsed', parsed)
+      setData(parsed);
+      setLoading(false);
+    })
+    .catch(function (error) {
+      console.log(error);
+      setLoading(false);
+    })
   };
 
   // Cuando se cambia desde fuera los valores y se hace un GET DATA

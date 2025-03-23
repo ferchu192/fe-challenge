@@ -9,12 +9,12 @@ import 'moment-timezone';
 
 const transacctionColumns = [
   {
-    name: 'block_height',
-    label: 'Block height',
+    name: 'hash',
+    label: 'Hash',
   },
   {
-    name: 'block_signed_at',
-    label: 'Block Signed',
+    name: 'time',
+    label: 'Date',
     options: {
       customBodyRender: (value) => {
         return (
@@ -56,30 +56,18 @@ const transacctionColumns = [
     }
   },
   {
-    name: 'gas_offered',
-    label: 'Gas Offered',
+    name: 'gas',
+    label: 'Gas',
     options: {
       display: false,
     }
   },
   {
-    name: 'gas_price',
-    label: 'Gas Price',
-    options: {
-      display: false,
-    }
-  },
-  {
-    name: 'gas_spent',
-    label: 'Gas Spent',
-  },
-  {
-    name: 'successful',
+    name: 'success',
     label: 'Successful',
     options: {
       sort: false,
       customBodyRender: (value) => {
-
         if (value) return <SvgIcon color="action"> <CheckCircleIcon /> </SvgIcon>
         else return <SvgIcon color="error"> <CancelRoundedIcon /> </SvgIcon>
       },
@@ -90,19 +78,23 @@ const transacctionColumns = [
     label: 'Value',
   },
   {
-    name: 'value_quote',
-    label: 'Value Quote',
+    name: 'valueUSD',
+    label: 'Value USD',
   },
   {
-    name: 'tx_offset',
-    label: 'Tx Offset',
+    name: 'priceUSD',
+    label: 'Price USD',
+  },
+  {
+    name: 'cost',
+    label: 'Cost',
     options: {
       display: false,
     }
   },
   {
-    name: 'tx_hash',
-    label: 'Tx Hash',
+    name: 'costUSD',
+    label: 'Cost USD',
     options: {
       display: false,
     }

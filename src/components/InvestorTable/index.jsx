@@ -8,9 +8,8 @@ import Table from '../../basicComponents/Table'
 // Validations
 import { chainIDRules, addressRules } from '../../validations/rules';
 
-// Moment
-import Moment from 'react-moment';
-import 'moment-timezone';
+// Components
+import Date from '../../basicComponents/Date';
 
 // Columns
 import { getColumns } from './columns';
@@ -97,10 +96,7 @@ const InvestorTable = () => {
         {/* UPDATE */}
         <ColumnElement id="update-date">
           <CardText>
-            {`Last update: `}
-            <Moment format="DD MMM HH:mm:ss">
-              {updateDate}
-            </Moment>
+            <Date label="Last Update" date={updateDate} />
           </CardText>
         </ColumnElement>
       </CardInput>
@@ -111,7 +107,10 @@ const InvestorTable = () => {
           title={queryType.label}
           columns={getColumns(queryType.id)}
           queryType={queryType.id}
-          initParams={queryParams}
+          initParams={{
+            limit: 10,
+            chainID: '1', // ETH
+          }}
           customParser={customParser}
           fetchCallback={fetchCallback}
           makeQuery={makeQuery}

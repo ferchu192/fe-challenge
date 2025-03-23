@@ -41,11 +41,12 @@ const Home = () => {
       label: 'Transactions',
       component: <InvestorTable />
     },
-    {
+    /*{
       id: 'charts',
       label: <IconContainer id="img-container"> <ImageIcon src='pancake_icon.png'/>Charts</IconContainer>,
       component: <InvestorCharts />
     },
+    */
   ];
 
   return (

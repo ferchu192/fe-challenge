@@ -15,8 +15,7 @@ import CustomFooter from './CustomFooter';
 // Theme
 import { getTableTheme } from './theme';
 
-// Helpers
-import { TRANSACTION_QUERY } from './helpers';
+import { getTransactions } from '../../api/transactions';
 
 // StyleComponents
 // import { LoadingOverlay } from './styledComponent';
@@ -106,42 +105,39 @@ const Table = ({
   /*
     -------------------- FETCHING --------------------
   */
-  const fetchData = () => {
+  const fetchData = async () => {
     setLoading(true);
-    const query = TRANSACTION_QUERY(queryParams);
-    const data = JSON.stringify({ query });
-    axios({
-      method: 'post',
-      url: 'https://streaming.bitquery.io/graphql',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      data: data
-    }).then(function (response) {
-      const { Transactions } = response.data.data.EVM;
-      const parsed = Transactions.forEach((transaction) => ({
-        hash: transaction.Transaction.Hash,
-        date: transaction.Transaction.Time,
-        from: transaction.Transaction.From,
-        to: transaction.Transaction.To,
-        gas: transaction.Transaction.Gas,
-        value: transaction.Transaction.Value,
-        valueUSD: transaction.Transaction.ValueInUSD,
-        cost: transaction.Transaction.Cost,
-        costUSD: transaction.Transaction.CostInUSD,
-        success: transaction.TransactionStatus.Success,
-        priceUSD: transaction.Transaction.Value/transaction.Transaction.ValueInUSD,
-      }));
-      
-      console.log('parsed', parsed)
+    try {
+      const parsed = await getTransactions(queryParams);
+      console.log('parsed', parsed);
       setData(parsed);
-      setLoading(false);
-    })
-    .catch(function (error) {
-      console.log(error);
-      setLoading(false);
-    })
-  };
+    } catch (error) {
+      console.error("Error fetching user profile", error);
+      throw error;
+    }
+    setLoading(false);
+  }
+    
+  //   const query = TRANSACTION_QUERY(queryParams);
+  //   const data = JSON.stringify({ query });
+  //   axios({
+  //     method: 'post',
+  //     url: 'https://streaming.bitquery.io/graphql',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     data: data
+  //   }).then(function (response) {
+      
+  //     console.log('parsed', parsed)
+  //     setData(parsed);
+  //     setLoading(false);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //     setLoading(false);
+  //   })
+  // };
 
   // Cuando se cambia desde fuera los valores y se hace un GET DATA
   useEffect(() => {

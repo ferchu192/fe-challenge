@@ -3,26 +3,24 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-// Moment
-import Moment from 'react-moment';
-import 'moment-timezone';
+// Components
+import { TimeAgo } from '../../basicComponents/Date';
+import Hash from '../../basicComponents/Hash';
+import { BadgeComponent } from '../../basicComponents/Badge';
 
 const transacctionColumns = [
   {
     name: 'hash',
     label: 'Hash',
+    options: {
+      customBodyRender: (value) => <Hash hash={value} withOutTooltip />,
+    }
   },
   {
-    name: 'time',
+    name: 'date',
     label: 'Date',
     options: {
-      customBodyRender: (value) => {
-        return (
-          <Moment format="DD MMM HH:mm:ss">
-            {value}
-          </Moment>
-        )
-      }
+      customBodyRender: (value) => <TimeAgo date={value} />,
     }
   },
   {
@@ -30,14 +28,7 @@ const transacctionColumns = [
     label: 'From',
     options: {
       sort: false,
-      customBodyRender: (value) => {
-        const {
-          label,
-          hex,
-        } = value;
-
-        return <>{label || hex}</>
-      },
+      customBodyRender: (value) => <Hash hash={value} />,
     },
   },
   {
@@ -45,14 +36,7 @@ const transacctionColumns = [
     label: 'To',
     options: {
       sort: false,
-      customBodyRender: (value) => {
-        const {
-          label,
-          hex,
-        } = value;
-
-        return <>{label || hex}</>
-      },
+      customBodyRender: (value) => <Hash hash={value} />,
     }
   },
   {
@@ -71,6 +55,13 @@ const transacctionColumns = [
         if (value) return <SvgIcon color="action"> <CheckCircleIcon /> </SvgIcon>
         else return <SvgIcon color="error"> <CancelRoundedIcon /> </SvgIcon>
       },
+    }
+  },
+  {
+    name: 'type',
+    label: 'Type',
+    options: {
+      customBodyRender: (value) => <BadgeComponent label={value} />,
     }
   },
   {

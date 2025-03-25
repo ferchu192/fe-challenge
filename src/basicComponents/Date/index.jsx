@@ -2,7 +2,10 @@ import React from 'react';
 
 // Moment
 import Moment from 'react-moment';
-import 'moment-timezone';
+import moment from 'moment';
+
+// Tooltip
+import Tooltip from '../Tooltip';
 
 const DateComponent = ({ label, date }) => {
   return (
@@ -15,5 +18,14 @@ const DateComponent = ({ label, date }) => {
   );
 };
 
-export default DateComponent;
+export const TimeAgo = ({ date }) => {
+  return (
+    <Tooltip title={moment(date).format('DD MMM HH:mm:ss')} >
+      <Moment fromNow>
+        {date}
+      </Moment>
+    </Tooltip>
+  );
+};
 
+export default DateComponent;

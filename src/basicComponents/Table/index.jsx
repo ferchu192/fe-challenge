@@ -12,9 +12,6 @@ import axios from 'axios';
 // Footer
 import CustomFooter from './CustomFooter';
 
-// Theme
-import { getTableTheme } from './theme';
-
 import { getTransactions } from '../../api/transactions';
 
 // StyleComponents
@@ -117,7 +114,7 @@ const Table = ({
     }
     setLoading(false);
   }
-    
+
   //   const query = TRANSACTION_QUERY(queryParams);
   //   const data = JSON.stringify({ query });
   //   axios({
@@ -128,7 +125,7 @@ const Table = ({
   //     },
   //     data: data
   //   }).then(function (response) {
-      
+
   //     console.log('parsed', parsed)
   //     setData(parsed);
   //     setLoading(false);
@@ -158,22 +155,17 @@ const Table = ({
     -------------------- RENDER --------------------
   */
   return (
-    <ThemeProvider theme={getTableTheme({
-      disableToolBar: false,
-      boxShadow: false,
-    })}>
-      <div id="table-container">
-        <MUIDataTable
-          title={title}
-          data={data}
-          columns={columns}
-          options={options}
-        />
-        {/* {
+    <div id="table-container">
+      <MUIDataTable
+        title={title}
+        data={data}
+        columns={columns}
+        options={options}
+      />
+      {/* {
           !loading && <LoadingOverlay id="loading-overlay">Loading</LoadingOverlay>
         } */}
-      </div>
-    </ThemeProvider>
+    </div>
   )
 }
 
@@ -193,9 +185,9 @@ const initParamsObjectShape = {
 Table.defaultProps = {
   title: 'Table',
   initParams: {},
-  fetchCallback: () => {},
+  fetchCallback: () => { },
   makeQuery: false,
-  setMakeQuery: () => {},
+  setMakeQuery: () => { },
 };
 
 Table.propTypes = {

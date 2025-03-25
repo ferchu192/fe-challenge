@@ -23,17 +23,93 @@ const HomeContainer = styled.div`
   background-color: #f3f3f3;
 `;
 
-// Or Create your Own theme:
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: 'rgb(95, 156, 227)',
-      contrastText: 'white',
-    }
-  },
-});
-
 const Home = () => {
+  const prefersDarkMode = false;
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          type: prefersDarkMode ? 'dark' : 'light',
+          primary: {
+            main: '#03518a',
+          },
+          secondary: {
+            main: '#ffe66d',
+            contrastText: '#222222',
+          },
+          action: {
+            active: '#03518a',
+          }
+        },
+        overrides: {
+          // Iconos
+          MuiSvgIcon: {
+            root: {
+              fontSize: '1.5rem',
+            },
+            colorError: {
+              color: '#dc3545',
+            },
+            colorWarning: {
+              color: '#ffc107',
+            },
+            colorAction: {
+              color: '#00a186',
+            },
+          },
+          // Columnas
+          MUIDataTableHeadCell: {
+            toolButton: {
+              fontWeight: 'bold',
+            },
+            sortAction: {
+              alignItems: 'center',
+            },
+            fixedHeader: {
+              fontWeight: 'bold',
+            }
+          },
+          // Icono sort
+          MuiTableSortLabel: {
+            icon: {
+              color: '#3e3e3e !important',
+            },
+          },
+          // Footer de paginacion
+          MuiTablePagination: {
+            caption: {
+              fontSize: '0.9rem'
+            },
+            input: {
+              fontSize: '0.9rem'
+            }
+          },
+          // Card
+          MuiPaper: {
+            rounded: {
+              borderRadius: '1rem',
+            },
+          },
+          // Toolbar
+          MUIDataTableToolbar: {
+            icon: {
+              '&:hover': {
+                color: 'white',
+                backgroundColor: '#03518a'
+              },
+            },
+          },
+          // Footer
+          MuiTableCell: {
+            footer: {
+              border: '1px solid transparent',
+            },
+          }
+        }
+      },
+    ),
+    [prefersDarkMode],
+  );
 
   const menuItems = [
     {

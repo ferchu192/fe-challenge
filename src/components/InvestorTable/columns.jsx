@@ -6,7 +6,8 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 // Components
 import { TimeAgo } from '../../basicComponents/Date';
 import Hash from '../../basicComponents/Hash';
-import { BadgeComponent } from '../../basicComponents/Badge';
+import { TransferType } from '../../basicComponents/Badge';
+import TransactionStatus from '../../basicComponents/TransactionStatus';
 
 const transacctionColumns = [
   {
@@ -47,21 +48,10 @@ const transacctionColumns = [
     }
   },
   {
-    name: 'success',
-    label: 'Successful',
-    options: {
-      sort: false,
-      customBodyRender: (value) => {
-        if (value) return <SvgIcon color="action"> <CheckCircleIcon /> </SvgIcon>
-        else return <SvgIcon color="error"> <CancelRoundedIcon /> </SvgIcon>
-      },
-    }
-  },
-  {
     name: 'type',
     label: 'Type',
     options: {
-      customBodyRender: (value) => <BadgeComponent label={value} />,
+      customBodyRender: (value) => <TransferType type={value}/>,
     }
   },
   {
@@ -88,6 +78,14 @@ const transacctionColumns = [
     label: 'Cost USD',
     options: {
       display: false,
+    }
+  },
+  {
+    name: 'status',
+    label: 'Status',
+    options: {
+      sort: false,
+      customBodyRender: (value) => <TransactionStatus status={value} />,
     }
   },
 ];

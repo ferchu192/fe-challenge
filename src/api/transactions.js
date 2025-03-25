@@ -20,7 +20,11 @@ export const getTransactions = async (params) => {
       valueUSD: transaction.Transaction.ValueInUSD,
       cost: transaction.Transaction.Cost,
       costUSD: transaction.Transaction.CostInUSD,
-      success: transaction.TransactionStatus.Success,
+      status: {
+        success: transaction.TransactionStatus.Success,
+        error: transaction.TransactionStatus.EndError,
+        faultError: transaction.TransactionStatus.FaultError,
+      },
       priceUSD: transaction.Transaction.Value/transaction.Transaction.ValueInUSD,
       type: transaction.Transaction.Type,
     }));

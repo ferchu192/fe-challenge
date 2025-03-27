@@ -3,11 +3,15 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
+// Schemas
+import Bitcoin from '../../schemas/bitcoin.js';
+
 // Components
 import { TimeAgo } from '../../basicComponents/Date';
 import Hash from '../../basicComponents/Hash';
 import { TransferType } from '../../basicComponents/Badge';
 import TransactionStatus from '../../basicComponents/TransactionStatus';
+import CryptoNumber from '../../basicComponents/CryptoNumber';
 
 const transacctionColumns = [
   {
@@ -57,6 +61,12 @@ const transacctionColumns = [
   {
     name: 'value',
     label: 'Value',
+    options: {
+      customBodyRender: (value) => {
+        const btc =  new Bitcoin();
+        return <CryptoNumber value={value} {...btc.getInfo()} />;
+      },
+    }
   },
   {
     name: 'valueUSD',

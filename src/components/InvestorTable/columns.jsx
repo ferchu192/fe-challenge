@@ -12,6 +12,8 @@ import Hash from '../../basicComponents/Hash';
 import { TransferType } from '../../basicComponents/Badge';
 import TransactionStatus from '../../basicComponents/TransactionStatus';
 import CryptoNumber from '../../basicComponents/CryptoNumber';
+import Ethereum from '../../schemas/etherium.js';
+import USD from '../../schemas/usd.js';
 
 const transacctionColumns = [
   {
@@ -63,18 +65,30 @@ const transacctionColumns = [
     label: 'Value',
     options: {
       customBodyRender: (value) => {
-        const btc =  new Bitcoin();
-        return <CryptoNumber value={value} {...btc.getInfo()} />;
+        const eth =  new Ethereum();
+        return <CryptoNumber value={value} {...eth.getInfo()} />;
       },
     }
   },
   {
     name: 'valueUSD',
     label: 'Value USD',
+    options: {
+      customBodyRender: (value) => {
+        const usd =  new USD();
+        return <CryptoNumber value={value} {...usd.getInfo()} />;
+      }
+    }
   },
   {
     name: 'priceUSD',
     label: 'Price USD',
+    options: {
+      customBodyRender: (value) => {
+        const usd = new USD();
+        return <CryptoNumber value={value} {...usd.getInfo()} />;
+      }
+    }
   },
   {
     name: 'cost',
@@ -88,6 +102,12 @@ const transacctionColumns = [
     label: 'Cost USD',
     options: {
       display: false,
+      options: {
+        customBodyRender: (value) => {
+          const usd = new USD();
+          return <CryptoNumber value={value} {...usd.getInfo()} />;
+        }
+      }
     }
   },
   {

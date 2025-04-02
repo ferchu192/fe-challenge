@@ -1,8 +1,10 @@
+import Crypto from './crypto.js';
+
 // Ethereum implementation
 class Ethereum extends Crypto {
     constructor() {
       // Ethereum has 18 decimals (wei) and runs on its own chain
-      super('ETH', 'Ξ', 18, 'Ethereum');
+      super('ETH', '/assets/eth.svg', 18, 'Ethereum');
       
       // Ethereum specific properties
       this.blockTime = 12; // seconds
@@ -52,4 +54,4 @@ class Ethereum extends Crypto {
     }
   }
 
-  module.exports = Ethereum;
+  export default Ethereum;

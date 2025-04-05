@@ -64,9 +64,9 @@ const transacctionColumns = [
     name: 'value',
     label: 'Value',
     options: {
-      customBodyRender: (value) => {
-        const eth =  new Ethereum();
-        return <CryptoNumber value={value} {...eth.getInfo()} />;
+      customBodyRender: (v) => {
+        const { value, chain } = v;
+        return <CryptoNumber value={value} {...chain} />;
       },
     }
   },
@@ -74,20 +74,20 @@ const transacctionColumns = [
     name: 'valueUSD',
     label: 'Value USD',
     options: {
-      customBodyRender: (value) => {
-        const usd =  new USD();
-        return <CryptoNumber value={value} {...usd.getInfo()} />;
-      }
+      customBodyRender: (v) => {
+        const { value, chain } = v;
+        return <CryptoNumber value={value} {...chain} />;
+      },
     }
   },
   {
     name: 'priceUSD',
     label: 'Price USD',
     options: {
-      customBodyRender: (value) => {
-        const usd = new USD();
-        return <CryptoNumber value={value} {...usd.getInfo()} />;
-      }
+      customBodyRender: (v) => {
+        const { value, chain } = v;
+        return <CryptoNumber value={value} {...chain} />;
+      },
     }
   },
   {
@@ -95,6 +95,10 @@ const transacctionColumns = [
     label: 'Cost',
     options: {
       display: false,
+      customBodyRender: (v) => {
+        const { value, chain } = v;
+        return <CryptoNumber value={value} {...chain} />;
+      },
     }
   },
   {
@@ -102,12 +106,10 @@ const transacctionColumns = [
     label: 'Cost USD',
     options: {
       display: false,
-      options: {
-        customBodyRender: (value) => {
-          const usd = new USD();
-          return <CryptoNumber value={value} {...usd.getInfo()} />;
-        }
-      }
+      customBodyRender: (v) => {
+        const { value, chain } = v;
+        return <CryptoNumber value={value} {...chain} />;
+      },
     }
   },
   {
@@ -115,7 +117,7 @@ const transacctionColumns = [
     label: 'Status',
     options: {
       sort: false,
-      customBodyRender: (value) => <TransactionStatus status={value} />,
+      customBodyRender: (value) => <TransactionStatus success={value} />,
     }
   },
 ];

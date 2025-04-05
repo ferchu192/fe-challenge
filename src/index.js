@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Home from './components/home';
+import Home from './home';
+import { CryptoContextProvider } from './context';
 
 ReactDOM.render(
-  <Home />
-  ,document.getElementById('root'),
+  <React.StrictMode>
+    <CryptoContextProvider>
+      <Home />
+    </CryptoContextProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
 )

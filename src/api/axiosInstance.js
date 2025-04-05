@@ -3,7 +3,7 @@ import axios from "axios";
 // import { getApiToken } from "./config";
 import { response } from './_response';
 
-const api = axios.create({
+const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL || 'https://streaming.bitquery.io/graphql',
   headers: {
     "Content-Type": "application/json",
@@ -11,9 +11,9 @@ const api = axios.create({
 });
 
 // Interceptor para agregar el token en cada request
-api.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   (config) => {
-    const token = "ory_at_rHLj8oaOK4Frk37T5-Yi5Ij8LkcfS7S3CLo3-mjsEDU.cnaeHiykELXVULx_NKZxjcTukp_qYr0NSPMgEu72dlg";
+    const token = "ory_at_Nu0iU-f2rdYju0lzcz0w3-priyrUjF4ksPPA3cNpUSg.G1LARW9cax4cXKbGWpYrv-bpaVIOqnXhG-sbKISWGKA";
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -22,8 +22,23 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-const api2 = {
-  post: () => response,
-}
+// Interfaz para hacer llamadas API
+const api = {
+  post: async (query) => {
+    try {
+      const response = await axiosInstance({
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: query
+      });
+      return response.data;
+    } catch (error) {
+      console.error("API request error:", error);
+      throw error;
+    }
+  },
+};
 
-export default api2;
+export default api;

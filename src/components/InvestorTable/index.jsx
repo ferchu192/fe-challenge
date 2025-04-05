@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 
 // BasicComponents
 import SelectQuery from '../../basicComponents/Selects/Query';
-import FetchButton from '../../basicComponents/FetchButton'
-import Table from '../../basicComponents/Table'
+
+import Table from './Table'
 
 // Validations
 import { chainIDRules, addressRules } from '../../validations/rules';
-
-// Components
-import Date from '../../basicComponents/Date';
 
 // Columns
 import { getColumns } from './columns';
@@ -17,21 +14,18 @@ import { getColumns } from './columns';
 // StyledComponents
 import {
   InvestorTableContainer,
-  CardInput,
-  CardHeader,
-  CardText,
-  ColumnElement,
   TableCard,
-} from '../../styles/stylecomponents';
+} from './stylecomponents';
+import FilterCard from '../FilterCard';
 
 const DEFAULT_QUERY = {
   id: 'transactionAddress',
-  label: 'Transaction Address'
+  label: 'Transactions'
 };
 
 const DEFAULT_QUERY_PARAMS = {
   chainID: 1,
-  address: '0xa79E63e78Eec28741e711f89A672A4C40876Ebf3',
+  address: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
   pageNumber: 1,
   pageSize: 10,
 };
@@ -70,51 +64,15 @@ const InvestorTable = () => {
   */
   return (
     <InvestorTableContainer id='investor-table-container'>
-      <CardInput id="card-inputs">
 
-        {/* HEADER */}
-        <CardHeader>Search Transactions</CardHeader>
-
-        {/* INPUTS */}
-        <SelectQuery
-          selectQuery={queryType}
-          setSelectQuery={setQueryType}
-          queryParams={queryParams}
-          setQueryParams={setQueryParams}
-        />
-
-        {/* BUTTON */}
-        <ColumnElement id="buttons">
-          <FetchButton
-            label="Get Data"
-            loading={makeQuery}
-            disabled={disabledButton}
-            onClick={() => setMakeQuery(true)}
-          />
-        </ColumnElement>
-
-        {/* UPDATE */}
-        <ColumnElement id="update-date">
-          <CardText>
-            <Date label="Last Update" date={updateDate} />
-          </CardText>
-        </ColumnElement>
-      </CardInput>
-
+      {/* QUERY */}
+      <FilterCard id="investor-table-filter-card" />
+      
       {/* TABLE */}
       <TableCard id="investor-table-container">
         <Table
           title={queryType.label}
           columns={getColumns(queryType.id)}
-          queryType={queryType.id}
-          initParams={{
-            limit: 10,
-            chainID: '1', // ETH
-          }}
-          customParser={customParser}
-          fetchCallback={fetchCallback}
-          makeQuery={makeQuery}
-          setMakeQuery={setMakeQuery}
         />
       </TableCard>
     </InvestorTableContainer>

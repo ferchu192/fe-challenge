@@ -7,17 +7,18 @@ import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import HorizontalTab from '../basicComponents/Tabs';
 
 // Tabs
-import InvestorTable from './InvestorTable';
-import InvestorCharts from './InvestorCharts'
+import InvestorTable from '../components/InvestorTable';
+import InvestorCharts from '../components/InvestorCharts'
 
 // import icon from '../assets/pancake_icon.png'
 
 import {
   ImageIcon,
   IconContainer,
-} from '../styles/stylecomponents';
+} from '../components/FilterCard/stylecomponents';
 
 import styled from 'styled-components';
+import FilterCard from '../components/FilterCard';
 
 const HomeContainer = styled.div`
   background-color: #f3f3f3;
@@ -104,7 +105,12 @@ const Home = () => {
             footer: {
               border: '1px solid transparent',
             },
-          }
+          },
+          // MuiSelect: {
+          //   select: {
+          //     padding: '0.8rem',
+          //   },
+          // }
         }
       },
     ),
@@ -129,6 +135,8 @@ const Home = () => {
     <MuiThemeProvider theme={theme}>
       <HomeContainer id="home-container">
         <HorizontalTab menuItems={menuItems} />
+        {/* <FilterCard /> */}
+        {/* <InvestorTable /> */}
       </HomeContainer>
     </MuiThemeProvider>
   )

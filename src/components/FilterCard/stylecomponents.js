@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-export const InvestorTableContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const CardInput = styled.div`
   display: flex;
   padding: 4rem;
@@ -24,11 +17,6 @@ export const ColumnElement = styled.div`
   font-family: sans-serif;
   display: flex;
   justify-content: center;
-`;
-
-export const TableCard = styled.div`
-  margin-top: 3rem;
-  width: 95%;
 `;
 
 export const CardHeader = styled.h2`
@@ -77,4 +65,14 @@ export const ImageIcon = styled.img`
 
 export const IconContainer = styled.div`
   display: flex;
+`;
+
+export const ColumnInputsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ColumnInput = styled.div`
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 `;

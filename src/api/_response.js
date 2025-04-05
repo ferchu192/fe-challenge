@@ -1,4 +1,4 @@
-export const response = {
+export const response_transactions = {
     "data": {
         "data": {
             "EVM": {
@@ -200,3 +200,136 @@ export const response = {
         }
     }
 }
+
+export const response_transfer = {
+    "EVM": {
+      "Transfers": [
+        {
+          "ChainId": "1",
+          "Transaction": {
+            "Cost": "0.000159302800000000",
+            "CostInUSD": "0.2906679686807129",
+            "Hash": "0xc5b26b6d00501dcc082e8b9aec4e61c4b31101cca37c6552b7a2b25e292862ea"
+          },
+          "Transfer": {
+            "Amount": "0.000100000000000000",
+            "AmountInUSD": "0.18246256103515626",
+            "Currency": {
+              "Name": "Ethereum",
+              "SmartContract": "0x",
+              "Symbol": "ETH"
+            },
+            "Receiver": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "Sender": "0x8eb368b95f2bb8fcbb15c8e6a028785563e9ad27",
+            "Type": "transaction"
+          },
+          "count": "1"
+        },
+        {
+          "ChainId": "1",
+          "Transaction": {
+            "Cost": "0.000155046400000000",
+            "CostInUSD": "0.276600657825",
+            "Hash": "0x0d8fdddfbbd905f00c87aa69d1e8e0d032b9ba1678743de14c3589bf18749ff2"
+          },
+          "Transfer": {
+            "Amount": "0.000100000000000000",
+            "AmountInUSD": "0.1783986328125",
+            "Currency": {
+              "Name": "Ethereum",
+              "SmartContract": "0x",
+              "Symbol": "ETH"
+            },
+            "Receiver": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "Sender": "0x8eb368b95f2bb8fcbb15c8e6a028785563e9ad27",
+            "Type": "transaction"
+          },
+          "count": "1"
+        },
+        {
+          "ChainId": "1",
+          "Transaction": {
+            "Cost": "0.000146550691264000",
+            "CostInUSD": "0.26323289544401823",
+            "Hash": "0xf879cecf9156825d8e1676b882ffbad3ed0f0e1edb0bd0ff8c5f83bf9745c2db"
+          },
+          "Transfer": {
+            "Amount": "0.000100000000000000",
+            "AmountInUSD": "0.17961900634765626",
+            "Currency": {
+              "Name": "Ethereum",
+              "SmartContract": "0x",
+              "Symbol": "ETH"
+            },
+            "Receiver": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "Sender": "0x94d0888827bd287441eddd5966b56b53b0206ec9",
+            "Type": "transaction"
+          },
+          "count": "1"
+        },
+        {
+          "ChainId": "1",
+          "Transaction": {
+            "Cost": "0.000040136366379547",
+            "CostInUSD": "0.07282986692724616",
+            "Hash": "0x22b6dd9b96dea2f62f90e86cde5727962f66f8bf0760c6a46ca33697a12eedad"
+          },
+          "Transfer": {
+            "Amount": "0.000005486366379547",
+            "AmountInUSD": "0.009955343978027418",
+            "Currency": {
+              "Name": "Ethereum",
+              "SmartContract": "0x",
+              "Symbol": "ETH"
+            },
+            "Receiver": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "Sender": "0xe7709f34c792edf8162661c35c1723d7d3aa64de",
+            "Type": "transaction"
+          },
+          "count": "1"
+        },
+        {
+          "ChainId": "1",
+          "Transaction": {
+            "Cost": "0.000175688800000000",
+            "CostInUSD": "0.3168819877111328",
+            "Hash": "0x642f3090b47164f79133590dea0ed3b5a92626048bd62c5d3971f834d40f744a"
+          },
+          "Transfer": {
+            "Amount": "0.000100000000000000",
+            "AmountInUSD": "0.1803655029296875",
+            "Currency": {
+              "Name": "Ethereum",
+              "SmartContract": "0x",
+              "Symbol": "ETH"
+            },
+            "Receiver": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "Sender": "0x8eb368b95f2bb8fcbb15c8e6a028785563e9ad27",
+            "Type": "transaction"
+          },
+          "count": "1"
+        },
+        {
+          "ChainId": "1",
+          "Transaction": {
+            "Cost": "0.000174630600000000",
+            "CostInUSD": "0.31767090390637204",
+            "Hash": "0x84acb7c730f62b2193c3fbd3ebdf827b996934d3d73566d2391e4d866182aa22"
+          },
+          "Transfer": {
+            "Amount": "0.000100000000000000",
+            "AmountInUSD": "0.18191021728515624",
+            "Currency": {
+              "Name": "Ethereum",
+              "SmartContract": "0x",
+              "Symbol": "ETH"
+            },
+            "Receiver": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "Sender": "0x8eb368b95f2bb8fcbb15c8e6a028785563e9ad27",
+            "Type": "transaction"
+          },
+          "count": "1"
+        }
+      ]
+    }
+  }

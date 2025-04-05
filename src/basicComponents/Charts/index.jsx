@@ -7,7 +7,7 @@ import ReactApexChart from 'react-apexcharts';
 // Styled
 import {
   CardCharts,
-} from '../../styles/stylecomponents';
+} from '../../components/FilterCard/stylecomponents';
 
 // Helpers
 import { parseNumber } from './helpers';

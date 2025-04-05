@@ -1,6 +1,6 @@
 import api from "./axiosInstance";
 
-import { TRANSACTION_QUERY } from "./queries";
+import { TRANSFER_QUERY } from "./queries";
 import USD from '../schemas/usd.js';
 
 /*
@@ -31,8 +31,8 @@ En la API de Bitquery, Transfers se enfoca específicamente en los movimientos d
 ¿Le gustaría ver también una consulta para las transacciones de esta dirección?
 */
 
-export const getTransactions = async (params, chain) => {
-  const query = TRANSACTION_QUERY(params);
+export const getTransfers = async (params, chain) => {
+  const query = TRANSFER_QUERY(params);
   const data = JSON.stringify({ query });
 
   const Usd = new USD();
@@ -45,40 +45,39 @@ export const getTransactions = async (params, chain) => {
 
     console.log('response', response);
 
-    const { Transactions } = response.data.data.EVM;
-    const parsed = Transactions.map((transaction) => ({
-      hash: transaction.Transaction.Hash,
-      date: transaction.Transaction.Time,
-      from: transaction.Transaction.From,
-      to: transaction.Transaction.To,
-      gas: transaction.Transaction.Gas,
-      value: {
-        value: transaction.Transaction.Value,
-        chain: chain.getInfo(),
-      },
-      valueUSD: {
-        value: transaction.Transaction.ValueInUSD,
-        chain: Usd.getInfo(),
-      },
-      priceUSD: {
-        value: transaction.Transaction.Value/transaction.Transaction.ValueInUSD,
-        chain: Usd.getInfo(),
-      },
-      cost: {
-        value: transaction.Transaction.Cost,
-        chain: chain.getInfo(),
-      },
-      costUSD: {
-        value: transaction.Transaction.CostInUSD,
-        chain: Usd.getInfo(),
-      },
-      status: {
-        success: transaction.TransactionStatus.Success,
-        error: transaction.TransactionStatus.EndError,
-        faultError: transaction.TransactionStatus.FaultError,
-      },
-      type: transaction.Transaction.Type,
-    }));
+    const { Transfers } = response.data.EVM;
+    const parsed = Transfers.map((transfer) => {
+      const { Transaction, Transfer } = transfer;
+      return{
+        hash: Transaction.Hash,
+        date: Transaction.Time,
+        from: Transfer.Sender,
+        to: Transfer.Receiver,
+        gas: Transaction.Gas,
+        value: {
+          value: Transfer.Amount,
+          chain: chain.getInfo(),
+        },
+        valueUSD: {
+          value: Transfer.AmountInUSD,
+          chain: Usd.getInfo(),
+        },
+        priceUSD: {
+          value: Transfer.Amount/Transfer.AmountInUSD,
+          chain: Usd.getInfo(),
+        },
+        cost: {
+          value: Transaction.Cost,
+          chain: chain.getInfo(),
+        },
+        costUSD: {
+          value: Transaction.CostInUSD,
+          chain: Usd.getInfo(),
+        },
+        status: Transfer.Success,
+        type: Transfer.Type,
+      }
+    });
 
     return parsed;
   } catch (error) {

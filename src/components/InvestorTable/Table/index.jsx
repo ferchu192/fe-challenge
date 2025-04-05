@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 
 // Components
 import MUIDataTable from "mui-datatables";
-import { ThemeProvider } from "@material-ui/core/";
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-import axios from 'axios';
 
 // Footer
 import CustomFooter from './CustomFooter';
 
-import { getTransactions } from '../../api/transactions';
+// Context
+import { useCryto } from '../../../context';
+
+import { getTransfers } from '../../../api/transfers';
 
 // StyleComponents
 // import { LoadingOverlay } from './styledComponent';
@@ -20,43 +20,41 @@ import { getTransactions } from '../../api/transactions';
 const Table = ({
   title,
   columns,
-  queryType,
-  initParams,
-  customParser, // Funcion de como parsear el result de la query
-  fetchCallback, // Funcion de callback al terminar el fetch
-  makeQuery, // Flag para determinar si hay que hacer un fetch
-  setMakeQuery, // Para notificar al componente padre que termino la query
 }) => {
-  // const columns = ["block_height", "from_address", "value", "value_quote"];
   const [data, setData] = useState();
   const [errorMessage, setErrorMessage] = useState();
-  const [queryParams, setQueryParams] = useState(initParams);
+  const [queryParams, setQueryParams] = useState();
   const [loading, setLoading] = useState();
+
+  const { state, actions } = useCryto();
 
   /*
   -------------------- PAGINATION --------------------
   */
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [hasNextPage, setHasNextPage] = useState();
 
   // Update de queryParams
-  const changeQueryParams = ({ pageSize, pageNumber }) => {
+  const changeQueryParams = ({ limit, pageNumber }) => { 
     setQueryParams((prevState) => ({
       ...prevState,
-      pageNumber: pageNumber ? pageNumber : page,
-      pageSize: pageSize ? pageSize : rowsPerPage,
+      offset: pageNumber ? pageNumber * rowsPerPage : page,
+      limit: limit ? limit : rowsPerPage,
+      chainID: state.chain.chain,
+      address: state.address,
     }))
   }
 
   const onChangePage = (newPage) => {
     setPage(newPage);
-    changeQueryParams({ pageNumber: newPage + 1 });
+    console.log('ONCHANGEPAGE');
+    changeQueryParams({ pageNumber: newPage });
   };
 
   const onChangeRowsPerPage = (numberOfRows) => {
     setRowsPerPage(numberOfRows);
-    changeQueryParams({ pageSize: numberOfRows });
+    console.log('ONCHANGEROWSPERPAGE');
+    changeQueryParams({ limit: numberOfRows });
   };
 
   /*
@@ -88,7 +86,7 @@ const Table = ({
           textLabels={textLabels}
           onChangePage={onChangePage}
           onChangeRowsPerPage={onChangeRowsPerPage}
-          hasNextPage={hasNextPage}
+          hasNextPage
         />
       );
     },
@@ -105,13 +103,14 @@ const Table = ({
   const fetchData = async () => {
     setLoading(true);
     try {
-      const parsed = await getTransactions(queryParams);
+      const parsed = await getTransfers(queryParams, state.chain);
       console.log('parsed', parsed);
       setData(parsed);
     } catch (error) {
       console.error("Error fetching user profile", error);
       throw error;
     }
+    actions.endRefetch();
     setLoading(false);
   }
 
@@ -136,19 +135,21 @@ const Table = ({
   //   })
   // };
 
-  // Cuando se cambia desde fuera los valores y se hace un GET DATA
+  // En caso de que se oprima el boton de GET DATA
   useEffect(() => {
-    if (makeQuery) {
-      // Reiniciar la pagina ya que es sobre una nueva CHAIN_ID o una nueva ADDRESS
-      // o simplemente se quizo resetear la query con los mismos valores
-      setPage(0);
-      if (queryParams === initParams) fetchData();
-      setQueryParams(initParams);
+    console.log('state.refetch', state.refetch);
+    if (state.refetch) {
+      changeQueryParams({
+        limit: rowsPerPage,
+        pageNumber: 0,
+        chain: state.chain.chain,
+        address: state.address,
+      })
     }
-  }, [makeQuery]);
+  }, [state.refetch]);
 
   useEffect(() => {
-    fetchData();
+    if (queryParams) fetchData();
   }, [queryParams]);
 
   /*
@@ -175,30 +176,13 @@ const colummnObjectShape = {
   options: PropTypes.object,
 };
 
-const initParamsObjectShape = {
-  chainID: PropTypes.number,
-  address: PropTypes.string,
-  pageNumber: PropTypes.number,
-  pageSize: PropTypes.number,
-};
-
 Table.defaultProps = {
   title: 'Table',
-  initParams: {},
-  fetchCallback: () => { },
-  makeQuery: false,
-  setMakeQuery: () => { },
 };
 
 Table.propTypes = {
   title: PropTypes.string,
   columns: PropTypes.arrayOf(PropTypes.shape(colummnObjectShape)).isRequired,
-  queryType: PropTypes.string.isRequired,
-  initParams: PropTypes.shape(initParamsObjectShape),
-  customParser: PropTypes.func.isRequired, // Funcion de como parsear el result de la query
-  fetchCallback: PropTypes.func, // Funcion de callback al terminar el fetch
-  makeQuery: PropTypes.bool, // Flag para determinar si hay que hacer un fetch
-  setMakeQuery: PropTypes.func, // Para notificar al componente padre que termino la query
 };
 
 export default Table;

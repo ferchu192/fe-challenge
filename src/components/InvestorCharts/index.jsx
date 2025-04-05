@@ -7,7 +7,7 @@ import { getQuery } from './helpers';
 import {
   RowCharts,
   RowChartFullScreen,
-} from '../../styles/stylecomponents';
+} from '../FilterCard/stylecomponents';
 
 // Charts
 // import Charts from '../../basicComponents/Charts';

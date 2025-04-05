@@ -1,10 +1,12 @@
 class Crypto {
-  constructor(symbol, icon, decimals, chain) {
+  constructor(symbol, icon, decimals, name, chain, web) {
     this.symbol = symbol;
     this.icon = icon;
     this.decimals = decimals;
     this.chain = chain;
     this.price = null;
+    this.name = name;
+    this.web = web;
   }
 
   // Set current price
@@ -27,16 +29,18 @@ class Crypto {
   getInfo() {
     return {
       symbol: this.symbol,
+      name: this.name,
       icon: this.icon,
       decimals: this.decimals,
       chain: this.chain,
       price: this.price,
+      web: this.web,
     };
   }
 
   // Clone the crypto instance
   clone() {
-    const cloned = new Crypto(this.symbol, this.icon, this.decimals, this.chain);
+    const cloned = new Crypto(this.symbol, this.icon, this.decimals, this.name, this.chain, this.web);
     cloned.setPrice(this.price);
     return cloned;
   }

@@ -2,6 +2,7 @@ import api from "./axiosInstance";
 
 import { TRANSFER_QUERY } from "./queries";
 import USD from '../schemas/usd.js';
+import { response_transfer } from "./_response.js";
 
 /*
 Excelente pregunta. Hay diferencias importantes entre Transferencias (Transfers) y Transacciones (Transactions) en el contexto de blockchain:
@@ -32,27 +33,24 @@ En la API de Bitquery, Transfers se enfoca específicamente en los movimientos d
 */
 
 export const getTransfers = async (params, chain) => {
-  const query = TRANSFER_QUERY(params);
+  const query = TRANSFER_QUERY({...params, chain: chain.getInfo().chain});
   const data = JSON.stringify({ query });
 
   const Usd = new USD();
 
-  console.log('query', query);
-  console.log('data', data);
-
   try {
     const response = await api.post(data); 
-
+    // const response = response_transfer;
     console.log('response', response);
 
     const { Transfers } = response.data.EVM;
     const parsed = Transfers.map((transfer) => {
       const { Transaction, Transfer } = transfer;
       return{
-        hash: Transaction.Hash,
+        hash: { hash: Transaction.Hash, link: chain.getInfo().txWeb },
         date: Transaction.Time,
-        from: Transfer.Sender,
-        to: Transfer.Receiver,
+        from: { hash: Transfer.Sender, link: chain.getInfo().walletWeb },
+        to: { hash: Transfer.Receiver, link: chain.getInfo().walletWeb },
         gas: Transaction.Gas,
         value: {
           value: Transfer.Amount,

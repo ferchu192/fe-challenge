@@ -4,7 +4,7 @@ import Crypto from './crypto.js';
 class USD extends Crypto {
     constructor() {
       // USD has 8 decimals (satoshis) and runs on its own chain
-      super('USD', '/assets/usd.svg', 2, 'USD');
+      super({symbol: 'USD', icon: '/assets/usd.svg', decimals: 2, name: 'USD'});
     }
 
     // Override getInfo to include Bitcoin specific properties

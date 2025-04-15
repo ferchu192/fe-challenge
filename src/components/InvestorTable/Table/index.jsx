@@ -15,14 +15,32 @@ import { useCryto } from '../../../context';
 import { getTransfers } from '../../../api/transfers';
 
 // StyleComponents
-// import { LoadingOverlay } from './styledComponent';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  tableContainer: {
+    position: 'relative',
+  },
+  loadingOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1000,
+  },
+});
 
 const Table = ({
   title,
   columns,
 }) => {
+  const classes = useStyles();
   const [data, setData] = useState();
-  const [errorMessage, setErrorMessage] = useState();
   const [queryParams, setQueryParams] = useState();
   const [loading, setLoading] = useState();
 
@@ -47,28 +65,20 @@ const Table = ({
 
   const onChangePage = (newPage) => {
     setPage(newPage);
-    console.log('ONCHANGEPAGE');
     changeQueryParams({ pageNumber: newPage });
   };
 
   const onChangeRowsPerPage = (numberOfRows) => {
     setRowsPerPage(numberOfRows);
-    console.log('ONCHANGEROWSPERPAGE');
     changeQueryParams({ limit: numberOfRows });
   };
 
   /*
     -------------------- TABLE OPTIONS --------------------
   */
-  const noMatchText = () => {
-    if (loading) return <CircularProgress />
-    else {
-      if (!((data) && (data.items))) return errorMessage;
-    }
-  }
   const options = useMemo(() => ({
     filter: false,
-    // sort: false,
+    sort: false,
     search: false,
     selectableRows: 'none',
     page,
@@ -92,7 +102,7 @@ const Table = ({
     },
     textLabels: {
       body: {
-        noMatch: noMatchText(),
+        noMatch: ' ',
       },
     },
   }), [loading]);
@@ -104,7 +114,6 @@ const Table = ({
     setLoading(true);
     try {
       const parsed = await getTransfers(queryParams, state.chain);
-      console.log('parsed', parsed);
       setData(parsed);
     } catch (error) {
       console.error("Error fetching user profile", error);
@@ -114,30 +123,8 @@ const Table = ({
     setLoading(false);
   }
 
-  //   const query = TRANSACTION_QUERY(queryParams);
-  //   const data = JSON.stringify({ query });
-  //   axios({
-  //     method: 'post',
-  //     url: 'https://streaming.bitquery.io/graphql',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     data: data
-  //   }).then(function (response) {
-
-  //     console.log('parsed', parsed)
-  //     setData(parsed);
-  //     setLoading(false);
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //     setLoading(false);
-  //   })
-  // };
-
   // En caso de que se oprima el boton de GET DATA
   useEffect(() => {
-    console.log('state.refetch', state.refetch);
     if (state.refetch) {
       changeQueryParams({
         limit: rowsPerPage,
@@ -156,16 +143,18 @@ const Table = ({
     -------------------- RENDER --------------------
   */
   return (
-    <div id="table-container">
+    <div id="table-container" className={classes.tableContainer}>
+      {loading && (
+        <div className={classes.loadingOverlay}>
+          <CircularProgress size={60} />
+        </div>
+      )}
       <MUIDataTable
         title={title}
         data={data}
         columns={columns}
         options={options}
       />
-      {/* {
-          !loading && <LoadingOverlay id="loading-overlay">Loading</LoadingOverlay>
-        } */}
     </div>
   )
 }

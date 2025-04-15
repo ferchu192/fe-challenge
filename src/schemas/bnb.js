@@ -4,7 +4,16 @@ import Crypto from './crypto.js';
 class BNB extends Crypto {
     constructor() {
       // BNB has 18 decimals and runs on Binance Smart Chain
-      super('BNB', '/assets/bnb.svg', 18, 'Binance Coin', 56, 'https://www.bnbchain.org/en');
+      super({
+        symbol: 'BNB',
+        icon: '/assets/bnb.svg',
+        decimals: 18,
+        chain: 56,
+        name: 'Binance Coin',
+        projectWeb: 'https://www.bnbchain.org/en',
+        txWeb: 'https://bscscan.com/tx',
+        walletWeb: 'https://bscscan.com/address',
+      });
 
       // BNB specific properties
       this.blockTime = 3; // seconds

@@ -21,6 +21,26 @@ const initialState = {
   address: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
   refetch: true,
   lastUpdate: new Date(),
+  knownWallets: [
+    // Ethereum
+    { address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045", label: "Vitalik Buterin" },
+    { address: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e", label: "Binance 8 (Ethereum)" },
+    { address: "0x564286362092D8e7936f0549571a803B203aAceD", label: "Binance 7 (Ethereum)" },
+    { address: "0xF977814e90dA44bFA03b6295A0616a897441aceC", label: "Binance Cold Wallet (Ethereum)" },
+    { address: "0x267be1c1D684F78cb4F6a176C4911b741E4Ffdc0", label: "Kraken Exchange (Ethereum)" },
+    { address: "0x28C6c06298d514Db089934071355E5743bf21d60", label: "Binance 14 (Ethereum)" },
+    { address: "0x05f51Aab068Caa6abFbd3Ef82f8cF49eD3f133A3", label: "Polkadot Multisig (Ethereum)" },
+    { address: "0x00000000219ab540356cBB839Cbe05303d7705Fa", label: "ETH2 Beacon Deposit Contract" },
+  
+    // BNB Smart Chain
+    { address: "0x3fda67f7583380e67ef93072294a7fac882fd7e7", label: "Binance BSC Wallet" },
+    { address: "0x564286362092d8e7936f0549571a803b203aaced", label: "Binance Hot Wallet (BSC)" },
+    { address: "0xE68d4c9A90cE1D0eB36795FbC8F46F0Bd2450eED", label: "Binance Cold Wallet (BSC)" },
+    { address: "0x55d398326f99059fF775485246999027B3197955", label: "USDT Contract (BSC)" },
+    { address: "0x73feaa1eE314F8c655E354234017bE2193C9E24E", label: "PancakeSwap: MasterChef" },
+    { address: "0x0eD7e52944161450477ee417DE9Cd3a859b14fD0", label: "PancakeSwap: Router" },
+    { address: "0x5eD9D1d4eB9FDF83bA305F0A1D1Fdb9481fDb9b1", label: "Venus Protocol" }
+  ],  
 };
 
 // Reducer function

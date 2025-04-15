@@ -52,6 +52,7 @@ export const TRANSFER_QUERY = ({
       EVM {
         Transfers(
           limit: {count: ${limit}, offset: ${offset}}
+          orderBy: {descending: Transaction_Time}
           where: {
             ${where}
             Transfer: {

@@ -6,6 +6,7 @@ const TooltipComponent = (props) => {
     title,
     children,
     withOutTooltip,
+    enterDelay,
     ...rest
   } = props;
 
@@ -15,7 +16,7 @@ const TooltipComponent = (props) => {
       title={title}
       arrow
       placement="top"
-      enterDelay={300}
+      enterDelay={enterDelay || 300}
       disableHoverListener={withOutTooltip}
       disableFocusListener={withOutTooltip}
       disableTouchListener={withOutTooltip}

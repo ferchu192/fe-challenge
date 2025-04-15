@@ -12,15 +12,13 @@ import Hash from '../../basicComponents/Hash';
 import { TransferType } from '../../basicComponents/Badge';
 import TransactionStatus from '../../basicComponents/TransactionStatus';
 import CryptoNumber from '../../basicComponents/CryptoNumber';
-import Ethereum from '../../schemas/etherium.js';
-import USD from '../../schemas/usd.js';
 
 const transacctionColumns = [
   {
     name: 'hash',
     label: 'Hash',
     options: {
-      customBodyRender: (value) => <Hash hash={value} withOutTooltip />,
+      customBodyRender: (value) => <Hash hash={value.hash} link={value.link} />,
     }
   },
   {
@@ -35,7 +33,7 @@ const transacctionColumns = [
     label: 'From',
     options: {
       sort: false,
-      customBodyRender: (value) => <Hash hash={value} />,
+      customBodyRender: (value) => <Hash hash={value.hash} link={value.link} />,
     },
   },
   {
@@ -43,7 +41,7 @@ const transacctionColumns = [
     label: 'To',
     options: {
       sort: false,
-      customBodyRender: (value) => <Hash hash={value} />,
+      customBodyRender: (value) => <Hash hash={value.hash} link={value.link} />,
     }
   },
   {

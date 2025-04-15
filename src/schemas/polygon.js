@@ -4,7 +4,16 @@ import Crypto from './crypto.js';
 class Polygon extends Crypto {
     constructor() {
       // Polygon has 18 decimals (wei) and runs on its own chain (ID 137)
-      super('MATIC', '/assets/matic.svg', 18, 'Polygon', 137, 'https://polygon.technology/');
+      super({
+        symbol: 'MATIC',
+        icon: '/assets/matic.svg',
+        decimals: 18,
+        chain: 137,
+        name: 'Polygon',
+        projectWeb: 'https://polygon.technology',
+        txWeb: 'https://polygonscan.com/tx',
+        walletWeb: 'https://wallet.polygon.technology'
+      });
 
       // Polygon specific properties
       this.blockTime = 2; // seconds

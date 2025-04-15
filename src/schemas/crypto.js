@@ -1,12 +1,14 @@
 class Crypto {
-  constructor(symbol, icon, decimals, name, chain, web) {
+  constructor({symbol, icon, decimals, name, chain, projectWeb, txWeb, walletWeb}) {
     this.symbol = symbol;
     this.icon = icon;
     this.decimals = decimals;
     this.chain = chain;
     this.price = null;
     this.name = name;
-    this.web = web;
+    this.projectWeb = projectWeb;
+    this.txWeb = txWeb;
+    this.walletWeb = walletWeb;
   }
 
   // Set current price
@@ -34,7 +36,9 @@ class Crypto {
       decimals: this.decimals,
       chain: this.chain,
       price: this.price,
-      web: this.web,
+      projectWeb: this.projectWeb,
+      txWeb: this.txWeb,
+      walletWeb: this.walletWeb,
     };
   }
 

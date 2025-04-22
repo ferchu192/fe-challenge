@@ -18,7 +18,7 @@ const CHAINS = [new Ethereum(), new BNB(), new Polygon()];
 const initialState = {
   chain: CHAINS[0],
   chains: CHAINS,
-  address: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+  address: '',
   refetch: true,
   lastUpdate: new Date(),
   knownWallets: [

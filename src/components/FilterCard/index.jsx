@@ -27,8 +27,6 @@ const FilterCard = () => {
     actions,
   } = useCryto();
 
-  console.log('--- state.refetch: ', state.refetch);
-
   return (
     <CardInput id="card-inputs">
 

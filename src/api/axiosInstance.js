@@ -1,7 +1,7 @@
 
 import axios from "axios";
 // import { getApiToken } from "./config";
-import { response } from './_response';
+// import { response } from './_response';
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL || 'https://streaming.bitquery.io/graphql',

@@ -1,5 +1,3 @@
-import { lessValue } from "../../validations/baseValidations";
-
 const parseExponent = (numberExp) => {
   let text = numberExp.toString();
   const exponentIndex = text.indexOf("e");

@@ -62,7 +62,7 @@ const VolumeLiquidity = ({ data }) => {
       volume,
     } = data;
     parseData(liquidity, volume);
-  }, []);
+  }, [data]);
 
   if (!categories && !series) return <></>;
   return (

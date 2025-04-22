@@ -8,17 +8,17 @@ import HorizontalTab from '../basicComponents/Tabs';
 
 // Tabs
 import InvestorTable from '../components/InvestorTable';
-import InvestorCharts from '../components/InvestorCharts'
+// import InvestorCharts from '../components/InvestorCharts'
 
 // import icon from '../assets/pancake_icon.png'
 
-import {
-  ImageIcon,
-  IconContainer,
-} from '../components/FilterCard/stylecomponents';
+// import {
+//   ImageIcon,
+//   IconContainer,
+// } from '../components/FilterCard/stylecomponents';
 
 import styled from 'styled-components';
-import FilterCard from '../components/FilterCard';
+// import FilterCard from '../components/FilterCard';
 
 const HomeContainer = styled.div`
   background-color: #f3f3f3;
@@ -88,7 +88,7 @@ const Home = () => {
           // Card
           MuiPaper: {
             rounded: {
-              borderRadius: '1rem',
+              borderRadius: '0rem 0rem 1rem 1rem',
             },
           },
           // Toolbar
@@ -106,11 +106,6 @@ const Home = () => {
               border: '1px solid transparent',
             },
           },
-          // MuiSelect: {
-          //   select: {
-          //     padding: '0.8rem',
-          //   },
-          // }
         }
       },
     ),

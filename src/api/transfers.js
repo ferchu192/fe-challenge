@@ -2,7 +2,7 @@ import api from "./axiosInstance";
 
 import { TRANSFER_QUERY } from "./queries";
 import USD from '../schemas/usd.js';
-import { response_transfer } from "./_response.js";
+// import { response_transfer } from "./_response.js";
 
 /*
 Excelente pregunta. Hay diferencias importantes entre Transferencias (Transfers) y Transacciones (Transactions) en el contexto de blockchain:

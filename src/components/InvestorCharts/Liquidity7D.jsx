@@ -39,7 +39,7 @@ const Liquidity7D = ({
 
   useEffect(() => {
     parseData(data);
-  }, []);
+  }, [data]);
 
   if (!categories && !series) return <></>;
   return (

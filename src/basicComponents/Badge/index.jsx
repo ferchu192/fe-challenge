@@ -2,7 +2,6 @@ import React from 'react';
 
 // Components
 import style from 'styled-components';
-import Badge from '@material-ui/core/Badge';
 import Chip from '@material-ui/core/Chip';
 
 const Type = style(Chip)`

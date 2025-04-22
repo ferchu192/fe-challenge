@@ -1,11 +1,3 @@
-// Icons
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
-import SvgIcon from '@material-ui/core/SvgIcon';
-
-// Schemas
-import Bitcoin from '../../schemas/bitcoin.js';
-
 // Components
 import { TimeAgo } from '../../basicComponents/Date';
 import Hash from '../../basicComponents/Hash';

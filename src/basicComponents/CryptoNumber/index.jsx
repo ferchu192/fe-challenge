@@ -11,11 +11,6 @@ const CryptoSpan = styled.span`
   gap: 0.5rem;
 `;
 
-const CryptoSymbol = styled.span`
-  font-size: 1rem;
-  font-weight: bold;
-`;
-
 const CryptoNumber = ({ value, decimals, symbol, icon }) => {
   const formatNumber = (number) => {
     const toFixed = decimals > 8 ? 8 : decimals;

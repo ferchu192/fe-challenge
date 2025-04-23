@@ -41,8 +41,6 @@ export const getTransfers = async (params, chain) => {
   try {
     const response = await api.post(data); 
     // const response = response_transfer;
-    console.log('response', response);
-
     const { Transfers } = response.data.EVM;
     const parsed = Transfers.map((transfer) => {
       const { Transaction, Transfer } = transfer;

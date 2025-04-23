@@ -43,8 +43,6 @@ export const getTransactions = async (params, chain) => {
   try {
     const response = await api.post(data); 
 
-    console.log('response', response);
-
     const { Transactions } = response.data.data.EVM;
     const parsed = Transactions.map((transaction) => ({
       hash: transaction.Transaction.Hash,

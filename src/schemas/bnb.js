@@ -6,7 +6,7 @@ class BNB extends Crypto {
       // BNB has 18 decimals and runs on Binance Smart Chain
       super({
         symbol: 'BNB',
-        icon: '/assets/bnb.svg',
+        icon: `${process.env.PUBLIC_URL}/assets/bnb.svg`,
         decimals: 18,
         chain: 56,
         name: 'Binance Coin',

@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "https://ferchu192.github.io/fe-challenge/static/js/main.00ee4f97.js",
+    "main.js": "https://ferchu192.github.io/fe-challenge/static/js/main.ffcf6402.js",
     "index.html": "https://ferchu192.github.io/fe-challenge/index.html",
-    "main.00ee4f97.js.map": "https://ferchu192.github.io/fe-challenge/static/js/main.00ee4f97.js.map"
+    "main.ffcf6402.js.map": "https://ferchu192.github.io/fe-challenge/static/js/main.ffcf6402.js.map"
   },
   "entrypoints": [
-    "static/js/main.00ee4f97.js"
+    "static/js/main.ffcf6402.js"
   ]
 }

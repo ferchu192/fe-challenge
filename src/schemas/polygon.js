@@ -6,7 +6,7 @@ class Polygon extends Crypto {
       // Polygon has 18 decimals (wei) and runs on its own chain (ID 137)
       super({
         symbol: 'MATIC',
-        icon: '/assets/matic.svg',
+        icon: `${process.env.PUBLIC_URL}/assets/matic.svg`,
         decimals: 18,
         chain: 137,
         name: 'Polygon',

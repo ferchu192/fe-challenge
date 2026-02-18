@@ -28,10 +28,6 @@ const TradingViewWidget = () => {
         {
           proName: "BITSTAMP:ETHUSD",
           title: "Ethereum"
-        },
-        {
-          description: "Matic",
-          proName: "COINBASE:MATICUSD"
         }
       ],
       showSymbolLogo: true,

@@ -17,11 +17,13 @@ export const ColumnElement = styled.div`
   font-family: sans-serif;
   display: flex;
   justify-content: center;
+  text-align: center;
 `;
 
 export const CardHeader = styled.h2`
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   margin-top: 0;
+  text-align: center;
 `;
 
 export const CardText = styled.p`

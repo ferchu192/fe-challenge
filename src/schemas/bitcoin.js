@@ -4,7 +4,7 @@ import Crypto from './crypto.js';
 class Bitcoin extends Crypto {
     constructor() {
       // Bitcoin has 8 decimals (satoshis) and runs on its own chain
-      super('BTC', '/assets/btc.svg', 8, 'Bitcoin');
+      super('BTC', `${process.env.PUBLIC_URL}/assets/btc.svg`, 8, 'Bitcoin');
       
       // Bitcoin specific properties
       this.blockTime = 10; // minutes

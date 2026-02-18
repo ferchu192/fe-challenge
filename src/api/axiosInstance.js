@@ -13,9 +13,10 @@ const axiosInstance = axios.create({
 // Interceptor para agregar el token en cada request
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = "ory_at_Nu0iU-f2rdYju0lzcz0w3-priyrUjF4ksPPA3cNpUSg.G1LARW9cax4cXKbGWpYrv-bpaVIOqnXhG-sbKISWGKA";
+    const token = "ory_at_kiqCelEv3C3d1Xi8FscqW_poad299aEO-DXRmLtSOmo.dibuWxO_5LnLotePdkxTimfvA_M91w-RHJG8KHUczWA";
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
+      config.headers['X-API-KEY'] = `${token}`;
     }
     return config;
   },

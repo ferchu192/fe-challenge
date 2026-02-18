@@ -6,7 +6,7 @@ class Ethereum extends Crypto {
       // Ethereum has 18 decimals (wei) and runs on its own chain
       super({
         symbol: 'ETH',
-        icon: '/assets/eth.svg',
+        icon: `${process.env.PUBLIC_URL}/assets/eth.svg`,
         decimals: 18,
         chain: 1,
         name: 'Ethereum',

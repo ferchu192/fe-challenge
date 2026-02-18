@@ -32,14 +32,14 @@ const Home = () => {
         palette: {
           type: prefersDarkMode ? 'dark' : 'light',
           primary: {
-            main: '#03518a',
+            main: '#627eea',
           },
           secondary: {
             main: '#ffe66d',
             contrastText: '#222222',
           },
           action: {
-            active: '#03518a',
+            active: '#627eea',
           }
         },
         overrides: {
